@@ -16,10 +16,12 @@
 
 package com.google.mlkit.vision.demo.java.objectdetector;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.net.Uri;
 import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.objects.DetectedObject;
@@ -75,6 +77,23 @@ public class ObjectGraphic extends Graphic {
       labelPaints[i] = new Paint();
       labelPaints[i].setColor(COLORS[i][1] /* background color */);
       labelPaints[i].setStyle(Paint.Style.FILL);
+    }
+  }
+
+  private void ShowWebSite(String text){
+    Uri uri;
+    //Transfer to website
+    switch(text) {
+      case "metal":
+        uri = Uri.parse("https://recycle.rethinktw.org/trash/88/");
+        break;
+      default:
+        return;
+    }
+    Intent launchWeb = new Intent(Intent.ACTION_VIEW, uri);
+    launchWeb.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    if (launchWeb.resolveActivity( getApplicationContext().getPackageManager()) != null) {
+      getApplicationContext().startActivity(launchWeb);
     }
   }
 
@@ -135,6 +154,10 @@ public class ObjectGraphic extends Graphic {
           textPaints[colorID]);
 
       yLabelOffset += lineHeight;
+      //If Condifence > 50, show the websites to introduce
+      if(label.getConfidence() * 100 > 50){
+        ShowWebSite(label.getText());
+      }
     }
   }
 }
