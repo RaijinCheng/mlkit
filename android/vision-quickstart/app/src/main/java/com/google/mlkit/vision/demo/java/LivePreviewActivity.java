@@ -64,12 +64,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /** Live preview demo for ML Kit APIs. */
 @KeepName
 public final class LivePreviewActivity extends AppCompatActivity
     implements OnRequestPermissionsResultCallback,
         OnItemSelectedListener,
         CompoundButton.OnCheckedChangeListener {
+  //Customized for demo
+  private static final boolean CustomDetectionOnly = true;
+
   private static final String OBJECT_DETECTION = "Object Detection";
   private static final String OBJECT_DETECTION_CUSTOM = "Custom Object Detection";
   private static final String CUSTOM_AUTOML_OBJECT_DETECTION =
@@ -113,21 +117,25 @@ public final class LivePreviewActivity extends AppCompatActivity
 
     Spinner spinner = findViewById(R.id.spinner);
     List<String> options = new ArrayList<>();
-    options.add(OBJECT_DETECTION);
-    options.add(OBJECT_DETECTION_CUSTOM);
-    options.add(CUSTOM_AUTOML_OBJECT_DETECTION);
-    options.add(FACE_DETECTION);
-    options.add(BARCODE_SCANNING);
-    options.add(IMAGE_LABELING);
-    options.add(IMAGE_LABELING_CUSTOM);
-    options.add(CUSTOM_AUTOML_LABELING);
-    options.add(POSE_DETECTION);
-    options.add(SELFIE_SEGMENTATION);
-    options.add(TEXT_RECOGNITION_LATIN);
-    options.add(TEXT_RECOGNITION_CHINESE);
-    options.add(TEXT_RECOGNITION_DEVANAGARI);
-    options.add(TEXT_RECOGNITION_JAPANESE);
-    options.add(TEXT_RECOGNITION_KOREAN);
+    if(CustomDetectionOnly) {
+      options.add(OBJECT_DETECTION_CUSTOM);
+    }else{
+      options.add(OBJECT_DETECTION);
+      options.add(OBJECT_DETECTION_CUSTOM);
+      options.add(CUSTOM_AUTOML_OBJECT_DETECTION);
+      options.add(FACE_DETECTION);
+      options.add(BARCODE_SCANNING);
+      options.add(IMAGE_LABELING);
+      options.add(IMAGE_LABELING_CUSTOM);
+      options.add(CUSTOM_AUTOML_LABELING);
+      options.add(POSE_DETECTION);
+      options.add(SELFIE_SEGMENTATION);
+      options.add(TEXT_RECOGNITION_LATIN);
+      options.add(TEXT_RECOGNITION_CHINESE);
+      options.add(TEXT_RECOGNITION_DEVANAGARI);
+      options.add(TEXT_RECOGNITION_JAPANESE);
+      options.add(TEXT_RECOGNITION_KOREAN);
+    }
 
     // Creating adapter for spinner
     ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_style, options);
