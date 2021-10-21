@@ -27,6 +27,7 @@ import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.DetectedObject.Label;
 import java.util.Locale;
+import java.lang.*;
 
 /** Draw the detected object info in preview. */
 public class ObjectGraphic extends Graphic {
@@ -82,18 +83,30 @@ public class ObjectGraphic extends Graphic {
 
   private void ShowWebSite(String text){
     Uri uri;
-    //Transfer to website
-    switch(text) {
-      case "metal":
-        uri = Uri.parse("https://recycle.rethinktw.org/trash/88/");
-        break;
-      default:
-        return;
-    }
-    Intent launchWeb = new Intent(Intent.ACTION_VIEW, uri);
-    launchWeb.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    if (launchWeb.resolveActivity( getApplicationContext().getPackageManager()) != null) {
-      getApplicationContext().startActivity(launchWeb);
+    int category_num=0;
+    //Get Substring format is #%d%d%d%s, ex: #001紅白塑膠袋
+    try {
+      category_num = Integer.parseInt(text.substring(1,4));
+      if(category_num > 0 && category_num < 102) { //valid number is between 1~101
+        //Transfer to website uri
+        uri = Uri.parse(String.format("https://recycle.rethinktw.org/trash/%d", category_num));
+
+        //Create browser to re-think website
+        Intent launchWeb = new Intent(Intent.ACTION_VIEW, uri);
+        launchWeb.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (launchWeb.resolveActivity( getApplicationContext().getPackageManager()) != null) {
+          getApplicationContext().startActivity(launchWeb);
+        }
+      }
+    }catch(NumberFormatException e) {
+      //Not expected number format
+      switch(text) {
+        case "metal":
+          uri = Uri.parse("https://recycle.rethinktw.org/trash/88/");
+          break;
+        default:
+          return;
+      }
     }
   }
 
