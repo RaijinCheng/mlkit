@@ -33,6 +33,10 @@
     <string name="pref_category_segmentation" translatable="false">Selfie Segmentation</string>
     <string name="pref_category_text_recognition" translatable="false">Text Recognition</string>
 
+    <!-- Strings for collection -->
+    <string name="pref_category_title_collection" translatable="false">Recycle Collections</string>
+    <string name="pref_category_title_collection_show" translatable="false">Show Collections</string>
+
     <!-- Strings for camera settings. -->
     <string name="pref_category_key_camera" translatable="false">pckc</string>
     <string name="pref_category_title_camera" translatable="false">Camera</string>

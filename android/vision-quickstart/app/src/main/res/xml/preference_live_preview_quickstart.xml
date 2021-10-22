@@ -6,6 +6,17 @@
   <PreferenceCategory
       android:enabled="true"
       android:key="@string/pref_category_key_camera"
+      android:title="@string/pref_category_title_collection">
+
+    <ListPreference
+        android:key="@string/pref_key_rear_camera_preview_size"
+        android:persistent="true"
+        android:title="@string/pref_category_title_collection_show" />
+
+  </PreferenceCategory>
+  <PreferenceCategory
+      android:enabled="true"
+      android:key="@string/pref_category_key_camera"
       android:title="@string/pref_category_title_camera">
 
     <ListPreference
