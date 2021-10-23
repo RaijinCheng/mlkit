@@ -26,6 +26,7 @@ import com.google.mlkit.vision.demo.GraphicOverlay;
 import com.google.mlkit.vision.demo.GraphicOverlay.Graphic;
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.DetectedObject.Label;
+import com.google.mlkit.vision.demo.java.CollectionActivity;
 import java.util.Locale;
 import java.lang.*;
 
@@ -35,6 +36,7 @@ public class ObjectGraphic extends Graphic {
   private static final float TEXT_SIZE = 54.0f;
   private static final float STROKE_WIDTH = 4.0f;
   private static final int NUM_COLORS = 10;
+  private static final CollectionActivity collection = new CollectionActivity();
   private static final int[][] COLORS =
       new int[][] {
         // {Text color, background color}
@@ -97,6 +99,7 @@ public class ObjectGraphic extends Graphic {
         if (launchWeb.resolveActivity( getApplicationContext().getPackageManager()) != null) {
           getApplicationContext().startActivity(launchWeb);
         }
+        collection.VisitCollection(category_num);
       }
     }catch(NumberFormatException e) {
       //Not expected number format

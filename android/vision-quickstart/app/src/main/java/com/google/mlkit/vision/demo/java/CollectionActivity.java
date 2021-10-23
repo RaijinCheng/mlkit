@@ -78,6 +78,26 @@ public final class CollectionActivity extends AppCompatActivity
           R.string.pref_category_item91, R.string.pref_category_item92, R.string.pref_category_item93, R.string.pref_category_item94, R.string.pref_category_item95, R.string.pref_category_item96, R.string.pref_category_item97, R.string.pref_category_item98, R.string.pref_category_item99, R.string.pref_category_item100,
           R.string.pref_category_item101,
   };
+
+  private static int[] collections_visit_time = new int[]{
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,0,0,0,0,0,0,0,0,0,
+          0,
+  };
+
+  public void VisitCollection(int number){
+    if(number > 0 && number < 102) {
+      collections_visit_time[number-1]++;
+    }
+  }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     if (BuildConfig.DEBUG) {
@@ -188,7 +208,11 @@ public final class CollectionActivity extends AppCompatActivity
       }
 
       ((TextView) view.findViewById(android.R.id.text1)).setText(categoryIds[position]);
-      ((TextView) view.findViewById(android.R.id.text2)).setText(categoryIds[position]);
+      if(collections_visit_time[position] == 0) {
+        ((TextView) view.findViewById(android.R.id.text2)).setText(R.string.pref_category_not_yet);
+      }else{
+        ((TextView) view.findViewById(android.R.id.text2)).setText(R.string.pref_category_found);
+      }
       //((TextView) view.findViewById(android.R.id.text2)).setText(descriptionIds[position]);
 
       return view;

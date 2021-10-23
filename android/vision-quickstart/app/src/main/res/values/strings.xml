@@ -137,6 +137,8 @@
     <string name="pref_category_item99" translatable="false">#099環保袋</string>
     <string name="pref_category_item100" translatable="false">#100鞋</string>
     <string name="pref_category_item101" translatable="false">#101防撞乖乖粒</string>
+    <string name="pref_category_not_yet" translatable="false">嘿嘿還沒有找到我~~</string>
+    <string name="pref_category_found" translatable="false">被你找到了!!!</string>
 
     <!-- Strings for camera settings. -->
     <string name="pref_category_key_camera" translatable="false">pckc</string>
