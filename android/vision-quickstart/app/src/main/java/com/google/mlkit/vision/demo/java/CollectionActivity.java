@@ -98,6 +98,13 @@ public final class CollectionActivity extends AppCompatActivity
       collections_visit_time[number-1]++;
     }
   }
+
+  public void ResetCollection(){
+    int i = 0;
+    for (i=0; i < 101; i++) {
+      collections_visit_time[i] = 0;
+    }
+  }
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     if (BuildConfig.DEBUG) {

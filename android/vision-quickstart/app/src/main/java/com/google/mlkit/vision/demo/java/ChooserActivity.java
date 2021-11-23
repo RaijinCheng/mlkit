@@ -49,6 +49,7 @@ public final class ChooserActivity extends AppCompatActivity
     implements OnRequestPermissionsResultCallback, AdapterView.OnItemClickListener {
   private static final String TAG = "ChooserActivity";
   private static final int PERMISSION_REQUESTS = 1;
+  private static final CollectionActivity collection = new CollectionActivity();
 
   private static final Class<?>[] CLASSES =
       VERSION.SDK_INT < VERSION_CODES.LOLLIPOP
@@ -59,6 +60,7 @@ public final class ChooserActivity extends AppCompatActivity
             LivePreviewActivity.class,
             StillImageActivity.class,
             CollectionActivity.class,
+            ResetActivity.class,
             //CollectionActivity.class,
             //CameraXSourceDemoActivity.class,
           };
@@ -72,7 +74,7 @@ public final class ChooserActivity extends AppCompatActivity
             R.string.desc_camera_source_activity,
             R.string.desc_still_image_activity,
             R.string.pref_category_title_collection_show,
-            //R.string.desc_camerax_live_preview_activity,
+            R.string.pref_category_title_reset_collection,
             //R.string.desc_cameraxsource_demo_activity,
           };
 
@@ -110,6 +112,11 @@ public final class ChooserActivity extends AppCompatActivity
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Class<?> clicked = CLASSES[position];
+    //Reset found collections while clicked
+    if(clicked == ResetActivity.class) {
+      collection.ResetCollection();
+      return;
+    }
     startActivity(new Intent(this, clicked));
   }
 

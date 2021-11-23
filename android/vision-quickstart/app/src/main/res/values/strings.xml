@@ -140,6 +140,9 @@
     <string name="pref_category_not_yet" translatable="false">嘿嘿還沒有找到我~~</string>
     <string name="pref_category_found" translatable="false">被你找到了!!!</string>
 
+    <!-- Strings for Reset -->
+    <string name="pref_category_title_reset_collection" translatable="false">Reset Collections</string>
+
     <!-- Strings for camera settings. -->
     <string name="pref_category_key_camera" translatable="false">pckc</string>
     <string name="pref_category_title_camera" translatable="false">Camera</string>
